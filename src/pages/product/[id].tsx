@@ -13,7 +13,7 @@ import {
   ImageContainer,
   ProductContainer,
   ProductDetails,
-} from '@/styles/product'
+} from '@/styles/pages/product'
 
 interface ProductProps {
   product: {
