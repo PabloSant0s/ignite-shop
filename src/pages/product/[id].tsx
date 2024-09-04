@@ -20,6 +20,7 @@ interface ProductProps {
     imageUrl: string
     price: string
     description: string
+    defaultPriceId: string
   }
 }
 export default function Product({ product }: ProductProps) {
@@ -27,6 +28,10 @@ export default function Product({ product }: ProductProps) {
 
   if (isFallback) {
     return <div>Carregando...</div>
+  }
+
+  async function handleBuyButton() {
+    console.log(product.defaultPriceId)
   }
   return (
     <ProductContainer>
@@ -39,7 +44,7 @@ export default function Product({ product }: ProductProps) {
 
         <p>{product.description}</p>
 
-        <button>Comprar agora</button>
+        <button onClick={handleBuyButton}>Comprar agora</button>
       </ProductDetails>
     </ProductContainer>
   )
@@ -73,6 +78,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
           currency: 'BRL',
         }),
         description: product.description,
+        defaultPriceId: price.id,
       },
     },
     revalidate: 60 * 60 * 1, // 1 hour
